@@ -1,0 +1,66 @@
+@import "../../common";
+
+.block{
+    background-color: white;
+    padding: 20px 0px;
+    min-height: 120px;
+    box-sizing: border-box;
+    .content{
+        @extend .content-width;
+        .links{
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            .footerLink{
+                padding:10px;
+                font-weight: lighter;
+                text-decoration: none;
+                color:black
+            }
+            .activeFooterLink{
+                text-decoration-color: black;
+                text-decoration: underline;
+            }
+        }
+        .text{
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+    }
+}
+.settingForm{
+    .group{
+        margin: 5px 0px;
+        .label{
+            margin-bottom: 5px;
+        }
+        .link{
+            display: grid;
+            grid-template-columns: auto auto;
+            .deleteButton{
+                margin: 0px 2px;
+                min-width: 10px;
+            }
+        }
+        .textField{
+            margin: 5px 0px;
+        }
+        .spacer{
+            margin: 8px 45%;
+            border-bottom: solid 1px grey;
+        }
+        .row{
+            display: flex;
+            justify-content: center;
+        }
+    }
+   
+    .buttonRow{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        padding:0px 20px;
+        justify-content: flex-end;
+    }
+}

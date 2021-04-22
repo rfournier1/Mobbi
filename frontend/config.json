@@ -1,0 +1,6 @@
+{
+    "api":{
+        "baseurl" : "http://localhost:8000" ,
+        "mediaurl": "http://localhost:8000/api"
+    }
+}

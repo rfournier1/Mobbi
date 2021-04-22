@@ -1,0 +1,22 @@
+@import "../../common";
+
+.block{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .content{
+        @extend .content-width;
+        .paper{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            >*{
+                margin: 10px;
+            }
+        }
+    }
+}
