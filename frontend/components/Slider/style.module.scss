@@ -1,0 +1,71 @@
+@import "../../common";
+
+.block{
+    background-color: white;
+    padding: 20px 0px;
+    min-height: 120px;
+    box-sizing: border-box;
+    .content{
+        @extend .content-width;
+        position: relative;
+        .background{
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+        .sliderContainer{
+            position: absolute;
+            top: 0;
+            bottom:0;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            .slider{
+                display: grid;
+                grid-template-columns: 30px 1fr 30px;
+                grid-column-gap: 30px;
+                align-items: center;
+                ul{
+                    display: flex;
+                    justify-content: center;
+                    grid-column: 1 / 4;
+                    padding: 0;
+                    margin: 0px -7px;
+                    li{
+                        display: flex;
+                        margin: 0px 7px;
+                        border-color: inherit-border-color;
+                        height: 8px;
+                        width: 8px;
+                        border-radius: 5px;
+                        border: solid 1px white;
+                        background-color: transparent;
+                        transition: all 0.4s ease;
+                        &:global(.slick-active){
+                            background-color: white;
+                        }
+                        button{
+                            height: 8px;
+                            width: 8px;
+                            padding: 0;
+                            background-color: transparent;
+                            color: transparent;
+                            cursor: pointer;
+                            border: none;
+
+                        }
+                        &::before{
+                            display: none;
+                        }
+                    }
+                } 
+
+            }
+        }
+        .text{
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+    }
+}

@@ -3,6 +3,7 @@ import useSettings from "../plugins/djangoBackend/settings"
 import Layout from '../components/Layout'
 import BlogList from '../components/BlogList'
 import Footer from '../components/footer'
+import Slider from '../components/Slider'
 import Header from '../components/header'
 import style from "./style.module.scss"
 import { checkLoggedIn } from "../plugins/djangoBackend/settings";
@@ -20,6 +21,7 @@ const Index = ({ initialValue }) => {
     >
       <section className={style.page}>
         <Header initialValue={{header: initialValue.header}}  />
+        <Slider initialValue={{slider: initialValue.slider}}  />
         <BlogList allBlogs={initialValue.posts} />
         <Footer initialValue={{footer: initialValue.footer}}  />
       </section>
@@ -29,7 +31,7 @@ const Index = ({ initialValue }) => {
 
 
 export async function getServerSideProps() {
-  const settings = useSettings(["siteConfig", "posts", "footer", "header"])
+  const settings = useSettings(["siteConfig", "posts", "footer", "header", "slider"])
   let initialValue  = await settings.get();
   return {
     props: { initialValue },

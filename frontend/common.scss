@@ -1,11 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&family=Spartan:wght@400;500;700&display=swap');
+
 //contents-size :
 $pageWidth:1366px;
 $contentWidth:1120px;
 $min-margin: 20px;
 $tabletBreakpoint:959px;
 $mobileBreakpoint:600px;
-$backgroundColor: rgba(155,155,155);
+
+//colors
+$grey: #433F3D;
+$white: #FFFFFF;
+$lightGreen: #CDE0C6;
+$green: #708A65;
+$lightBlue: #D0E0E3 ;
+$blue: #B4C6D6 ;
+$darkBlue: #76A5AF ;
+$lightClay: #f1e7d5 ;
+$clay: #e6d2b1 ;
+$darkClay: rgb(172, 138, 105) ;
+$lightBrown: #dfd4cc;
+$brown : #a49184;
+
+//font
+$font :  "Montserrat", "Roboto", "Helvetica", sans-serif;;
+$titleFont :'Spartan', sans-serif;
+
+
 .content-width{
   width: $contentWidth;
   margin: 0 auto;
@@ -28,7 +48,7 @@ $backgroundColor: rgba(155,155,155);
   }
 }
 .page-width{
-    width: $pageWidth;
+  width: $pageWidth;
   margin: 0 auto;
   @media (max-width: $pageWidth + 2 * $min-margin) {
     width: auto;
@@ -44,10 +64,21 @@ $backgroundColor: rgba(155,155,155);
 
 .block {
   //titles
-  font-family: "Open Sans", "Roboto", "Helvetica", "Arial", sans-serif
-
+  font-family: $font ;
+  color: $grey;
+  * {
+    font-family: $font ;
+    color: $grey;
+  }
+  a{
+    @media(max-width: $tabletBreakpoint){
+      &:hover{
+        color: $green;
+     }
+    }
+  }
   h1, h2, h3, h4, h6{
-    font-family :'Playfair Display', serif;
+    font-family : $titleFont;
     margin: 0 0 10px 0;
   }
   h5{
@@ -116,6 +147,4 @@ $backgroundColor: rgba(155,155,155);
 :export{
   tabletBreakpoint:$tabletBreakpoint;
   mobileBreakpoint:$mobileBreakpoint;
-  backgroundColor: $backgroundColor;
-
 }

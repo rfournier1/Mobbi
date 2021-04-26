@@ -5,6 +5,8 @@ import {Drawer, Button} from '@material-ui/core';
 import {Menu as MenuIcon} from "@material-ui/icons"
 import { useForm, usePlugin } from 'tinacms'
 import useSettings from "../../plugins/djangoBackend/settings"
+import Link from "next/link";
+import { useRouter } from 'next/router'
 
 const Header = (props) => {
   const formOptions = {
@@ -31,13 +33,20 @@ const Header = (props) => {
   const links=[
     {
       link:"/",
-      title:" ACCUEIL"
+      title:"Accueil"
     },
     {
-      link:"/a-propos",
-      title:" À PROPOS"
+      link:"/blog",
+      title:"Blog"
     },
- 
+    {
+      link:"/qui-sommes-nous",
+      title:"Qui sommes-nous ?"
+    },
+    {
+      link:"/contact",
+      title:"Contact"
+    },
   ];
   const [drawer,setDrawer] = useState(false);
 
@@ -46,6 +55,8 @@ const Header = (props) => {
     setDrawer(old=>!old)
   },[setDrawer]);
 
+  const { asPath } = useRouter()
+
   return (
   <header>
     <div className={style.block}>
@@ -53,35 +64,40 @@ const Header = (props) => {
         <Drawer anchor="right" onClose={toggleDrawer} open={drawer} >
           <div className={style.drawerMenu}>
               {links.map((element, index)=>(
-                <a
-                  href={element.link}
-                  key={index}
-                >
-                  <span>{element.title}</span>
-                  <span className={style.divider}/>
-                </a>
+                 <Link
+                    key={index}
+                    href={{ pathname: element.link }}
+                  >
+                    <a className={element.link === asPath ? style.activeLink : style.link}>
+                      <span>{element.title}</span>
+                      <span className={style.divider}/>
+                    </a>
+                </Link>
               ))}
           </div>
         </Drawer>
+        
+      <div className={style.content}>
         <a
-          href="/"
-          className={style.link}
-        >
+            href="/"
+            className={style.link}
+          >
           {data && data.header && data.header.image && <img src={data && data.header.image} className={style.logo} alt="logo"/> }
           
         </a>      
-      <div className={style.content}>
-        {isWide? 
-        <div className={style.buttons}>
-          {links.map((element, index)=>(
-            <a
-              href={element.link}
-              key={index}
-              className= {style.headerLink}
-            >
-              <span>{element.title}</span>
-            </a>
-          ))}
+          {isWide? 
+          <div className={style.buttons}>
+           {links.map((element, index)=>(
+                 <Link
+                    key={index}
+                    href={{ pathname: element.link }}
+                  >
+                    <a className={element.link === asPath ? style.activeLink : style.link}>
+                      <span>{element.title}</span>
+                      <span className={style.divider}/>
+                    </a>
+                </Link>
+              ))}
         </div>
         :<div className={style.mobileButton}>  
         <Button onClick={toggleDrawer}><MenuIcon/></Button>        
