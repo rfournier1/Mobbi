@@ -5,7 +5,7 @@ import { usePlugin, useForm } from 'tinacms'
 
 const Footer = (props) => {
   const formOptions = {
-    id:"Footer",
+    id:"0-footer",
     label: "Footer",
     initialValues: props.initialValue,
     fields: [

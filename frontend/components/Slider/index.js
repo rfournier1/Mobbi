@@ -20,8 +20,8 @@ const Arrow = ({color, next, ...props})=>{
 
 const Slider = (props) => {
   const formOptions = {
-    id:"Slider",
-    label: "Slider",
+    id: props.priority+props.id,
+    label: props.label,
     initialValues: props.initialValue,
     fields: [
       {

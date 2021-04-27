@@ -4,7 +4,7 @@ import useSettings from "../plugins/djangoBackend/settings"
 export default function Layout(props) {
   
   const formOptions = {
-    id:"Home",
+    id:"0--site-config",
     label: "Site Config",
     initialValues: props.initialValue,
     fields: [

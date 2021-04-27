@@ -1,0 +1,149 @@
+@import "../../common";
+
+.playerWrapper {
+    @extend .content-width;
+    position: relative;
+    padding-top: 56.25% ;
+    
+    height: 0;
+    overflow: hidden;
+   
+    .player {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+@mixin shaky{
+    animation-name: shake;
+    animation-duration:2.2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  5%, 45% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  10%, 40% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  15%, 25%, 35% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  20%, 30% {
+    transform: translate3d(4px, 0, 0);
+  }
+  50% {
+      transform: translate3d(0,0,0);
+  }
+}
+
+  
+.tile{
+    .tileBorder{
+        -webkit-clip-path: polygon(0% 50%, 25% 100%, 75% 100%, 100% 50%, 75% 0%, 25% 0%);
+        clip-path: polygon(0% 50%, 25% 100%, 75% 100%, 100% 50%, 75% 0%, 25% 0%);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 4px;
+        background-color: $green;
+    }
+    .tileContent{
+        -webkit-clip-path: polygon(0% 50%, 25% 100%, 75% 100%, 100% 50%, 75% 0%, 25% 0%);
+        clip-path: polygon(0% 50%, 25% 100%, 75% 100%, 100% 50%, 75% 0%, 25% 0%);
+        overflow: hidden;
+        width: 100%;
+        height: 0;
+        padding-top: 86.6%;
+        position: relative;
+        .image{
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            cursor: pointer;
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: relative;
+                z-index: 2;
+                transition: all 0.4s ease;
+                
+            } 
+        }
+        .media{
+           @extend .image;
+            @media(min-width: $tabletBreakpoint){
+                &:hover{
+                    img{
+                        opacity: 0.8;
+                    }
+                    &::before{
+                        @include shaky;
+                    }
+                }
+            }
+            
+            &::before{
+                width: 50px;
+                height: 50px;
+                content: "play";
+                color: transparent;
+                background:  center / contain no-repeat  url("../shared/play.png");
+                filter: invert(100%);
+                position: absolute;
+                z-index: 3;
+            }
+        }
+       
+    }
+	
+}
+.block{
+    background-color: white;
+    padding: 20px 0px;
+    min-height: 120px;
+    box-sizing: border-box;
+    .content{
+        @extend .content-width;
+        position: relative;
+        .grid{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 50px;
+            .left{
+                grid-area: 1 / 1 / 2 / 2;
+                text-align: left;
+            }
+            .right{
+                grid-area: 1 / 2 / 2 / 3;
+            }
+        }
+        .switchGrid{
+            @extend .grid;
+            .left{
+                grid-area: 1 / 2 / 2 / 3;
+            }
+            .right{
+                grid-area: 1 / 1 / 2 / 2;
+            }
+        }
+       .text{
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+    }
+}

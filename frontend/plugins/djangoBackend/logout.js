@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 import styles from "./style.module.scss"
 import useMedia from "use-media"
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const ColorButton = withStyles(() => ({
     root: {
@@ -28,14 +29,23 @@ function LogoutButton(){
    
     const isMobile = useMedia({maxWidth : styles.tabletBreakpoint})
 
-    return <ColorButton onClick={disconnect}>{isMobile? <CloseIcon /> : <span>Déconnexion</span>}</ColorButton> 
+    return <div style={{display: "flex", justifyContent: "center", marginTop: "30px"}}><ColorButton onClick={disconnect}>{isMobile? <CloseIcon /> : <span>Déconnexion</span>}</ColorButton> </div>
            
 }   
+
+function LogoutAction(){
+    useEffect(()=>{
+        localStorage.removeItem('token');
+        window.location.reload();
+    })
+    return <div style={{display: "flex", justifyContent: "center", marginTop: "30px", textAlign: "center"}}>Déconnexion...</div>
+}
 export const ButtonWidget = {
-    __type: 'toolbar:widget',
-    name: 'logout',
-    weight: 5,
-    component: LogoutButton,
+    __type: 'screen',
+    name: 'Déconnexion',
+    layout: 'popup',
+    Icon: ExitToAppIcon,
+    Component: LogoutAction,
   }
 
 export default ButtonWidget;

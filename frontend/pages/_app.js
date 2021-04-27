@@ -7,6 +7,10 @@ import { createMuiTheme, MuiThemeProvider  } from '@material-ui/core/styles';
 import { CreateBlogPlugin } from '../plugins/BlogCreator'
 import DjangoMediaStore from "../plugins/djangoBackend/media-store";
 import LogoutWidget from "../plugins/djangoBackend/logout";
+import TinaCMSConditionField from 'tinacms-condition-field'
+import { ConditionalFieldPlugin, ConditionalGroupFieldPlugin } from 'react-tinacms-field-condition'
+
+
 const MyApp = ({ Component, pageProps }) =>{
 
   const theme = createMuiTheme({
@@ -21,15 +25,19 @@ const MyApp = ({ Component, pageProps }) =>{
     },
   });
   const cms = new TinaCMS({
-    toolbar: true,
+    toolbar: false,
     enabled: false,
     sidebar: {
-      position: 'overlay',
+      position: 'displace',
     },
     media: new DjangoMediaStore(),
-    plugins:[LogoutWidget, HtmlFieldPlugin, MarkdownFieldPlugin, DateFieldPlugin, CreateBlogPlugin]
+    plugins:[LogoutWidget, HtmlFieldPlugin, MarkdownFieldPlugin, DateFieldPlugin, CreateBlogPlugin, ConditionalFieldPlugin, ConditionalGroupFieldPlugin]
   })
-
+  /*
+  const conditionField = new TinaCMSConditionField(cms);
+ 
+  conditionField.install();
+  */
   return (
     <TinaProvider cms={cms}>
         <MuiThemeProvider theme={theme}>
