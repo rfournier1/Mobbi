@@ -28,6 +28,7 @@ const Slider = (props) => {
         label: 'Images',
         name: 'slider.images',
         component: 'group-list',
+        description: "dim back -120px L et -20px h",
         defaultItem: () => ({
           id: Math.random()
             .toString(36)

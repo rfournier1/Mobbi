@@ -25,6 +25,22 @@
                 grid-template-columns: 30px 1fr 30px;
                 grid-column-gap: 30px;
                 align-items: center;
+                height: calc(100% - 20px);
+                :global(.slick-list){
+                    height: 100%;
+                    :global(.slick-track){
+                        height: 100%;
+                        :global(.slick-slide){
+                            >div{
+                                height: 100%;
+                            }
+                        }
+                    }
+                }
+                .calque{
+                    height: 100%;
+                    object-fit: contain;
+                }
                 ul{
                     display: flex;
                     justify-content: center;

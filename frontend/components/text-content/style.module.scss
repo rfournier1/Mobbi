@@ -44,6 +44,10 @@
 
   
 .tile{
+    .caption{
+        text-align: center;
+        margin: 4px;
+    }
     .tileBorder{
         -webkit-clip-path: polygon(0% 50%, 25% 100%, 75% 100%, 100% 50%, 75% 0%, 25% 0%);
         clip-path: polygon(0% 50%, 25% 100%, 75% 100%, 100% 50%, 75% 0%, 25% 0%);
@@ -129,6 +133,84 @@
             }
             .right{
                 grid-area: 1 / 2 / 2 / 3;
+                .hexGrid1{
+                    margin-bottom: 20px;;
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    row-gap: 30px;
+                    column-gap: 30px;
+                }
+                .hexGrid2{
+                    @extend .hexGrid1;
+                    grid-template-columns: 1fr 1fr;
+                    >div:nth-child(2n+1){
+                        margin-right: -18%;
+                    }
+                    >div:nth-child(2n){
+                        padding-top: 54%;
+                        margin-left: -18%;
+                    }
+                }
+                .hexGrid3{
+                    @extend .hexGrid1;
+                    grid-template-columns: 2fr 1fr;
+                    >div:nth-child(3n+1){
+                        grid-row-end: span 2;
+                        align-self: center;
+                        padding-top: 10%;
+                    }
+                    >div:nth-child(3n+2){
+                        margin-left: -45%;
+                    }
+                    >div:nth-child(3n+3){
+                        grid-column-start: 2;
+                        grid-column-end: 3;
+                        margin-left: -40%;
+                        padding-right: 20%;
+                        margin-top: -10%;
+
+                    }
+
+                }
+                .hexGrid4{
+                    @extend .hexGrid1;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    row-gap: 10px;
+                    >div:nth-child(4n+1){
+                        grid-row-end: span 2;
+                        align-self: center;
+                        margin-right: -35%;
+                    }
+                    
+                    >div:nth-child(4n+3){
+                        padding: 10% 0;
+                        grid-row-end: span 2;
+                        align-self: center;
+                        margin-right: 35%;
+                        margin-left: -35%;
+                    }
+                    >div:nth-child(4n+4){
+                        grid-column-start: 2;
+                        grid-column-end: 3;
+                       
+                    }
+                }
+                .hexGrid5{
+                    @extend .hexGrid1;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    row-gap: 10px;
+                    >div:nth-child(5n+1),  >div:nth-child(5n+4){
+                        margin-right: -26%;
+                    }
+                    >div:nth-child(5n+2){
+                        grid-row-end: span 2;
+                        align-self: center;
+                        margin: 0 -13%;
+                    }
+                    >div:nth-child(5n+3),  >div:nth-child(5n+5){
+                        margin-left: -26%;
+                    }
+                }
             }
         }
         .switchGrid{

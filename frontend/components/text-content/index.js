@@ -4,6 +4,7 @@ import useSettings from "../../plugins/djangoBackend/settings"
 import { usePlugin, useForm } from 'tinacms'
 import ReactPlayer from 'react-player'
 import {Dialog} from "@material-ui/core"
+import { array } from "prop-types"
 const Tile = ({mode, media})=>{
   const [open, setOpen]=useState(false);
   const ref = useRef();
@@ -26,14 +27,18 @@ const Tile = ({mode, media})=>{
         <div className={mode? style.media : style.image} >
           {mode?
             <img src={media.thumbnail} onClick={()=>setOpen(true)} />
-          : <img src={media} />
+          : <>
+            <img src={media.image} />
+          </>
           }
         </div>
    
       </div>
     </div>
-    
+    <div className={style.caption}>{media.caption}</div>
+
     </div>
+
   </>
 }
 const TextContent = (props) => {
@@ -143,8 +148,25 @@ const TextContent = (props) => {
   }
 
   const [data, form] = useForm(formOptions)
+  const [displayedMedias, setDisplayedMedias] = useState([])
   usePlugin(form)
   
+  useEffect(()=>{
+    let array = [];
+    if(data && data[props.id] && data[props.id].mode && data[props.id].videos &&  data[props.id].videos.videos){
+      array = data[props.id].videos.videos;
+    }else if(data && data[props.id] && data[props.id].images &&  data[props.id].images.list){
+      array =  data[props.id].images.list;
+    }
+    let chunked = [];
+    let index = 0;
+    while(index<array.length){
+      chunked.push(array.slice(index, 5 + index));
+      index = index +5;
+    }
+    setDisplayedMedias(chunked);
+    
+  },[data[props.id]])
   return (
   <div className={style.block}>
       <div className={style.content}>
@@ -155,27 +177,23 @@ const TextContent = (props) => {
                 {(data && data[props.id]  && data[props.id].leftText) && <div dangerouslySetInnerHTML={{__html : data[props.id].leftText}} /> }
               </div>
               <div className={style.right}>
-                <div className={style.grid}>
-                  {(data && data[props.id]  && data[props.id].mode)?
-                    data[props.id].videos &&  data[props.id].videos.videos && data[props.id].videos.videos.map((e, index)=>(
-                      <div key={index}>
-                        <Tile mode={data[props.id].mode} media={e} />
-                      </div>
-                    ))
-                  : 
-                    data[props.id].videos &&  data[props.id].videos.videos && data[props.id].videos.videos.map((e, index)=>(
-                    <div key={index}>
-                      <Tile mode={data[props.id].mode} media={e} />
-                    </div>
-                  ))
+                
+                  {(data && data[props.id]) && 
+                    displayedMedias.map((chunk, i)=>(
+                      <div className={style["hexGrid"+chunk.length]} key={i}>
+                        {chunk.map((e,j)=>(
+                          <div key={j}>
+                            <Tile mode={data[props.id].mode} media={e} />
+                          </div>
+                        ))}
+                      </div> 
+                    ))        
                   }
-                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
   </div>
   )}
 
