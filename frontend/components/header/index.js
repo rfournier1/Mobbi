@@ -61,7 +61,7 @@ const Header = (props) => {
   <header>
     <div className={style.block}>
       <div className={style.navbar}>
-        <Drawer anchor="right" onClose={toggleDrawer} open={drawer} >
+        <Drawer anchor="top" onClose={toggleDrawer} open={drawer} >
           <div className={style.drawerMenu}>
               {links.map((element, index)=>(
                  <Link

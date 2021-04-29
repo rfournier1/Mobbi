@@ -1,0 +1,120 @@
+@import "../../common";
+
+.dialogContent{
+    @extend .content-width;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 0;
+    .caption{
+        position: absolute;
+        font-family: $titleFont;
+        right: 20px;
+        top: 20px;
+        background-color: rgba(white, 0.8);
+        color: $green;
+        padding: 20px 40px;
+        @media(max-width: $tabletBreakpoint){
+            position: relative;
+            top: 0;
+            right: 0;
+            padding: 20px;
+            text-align: center;
+        }
+    }
+    img{
+        width: 100%;
+    }
+    .description{
+        position: absolute;
+        color: white;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba($grey, 0.8);
+        font-family: $font;
+        padding: 40px 60px;
+        @media(max-width: $tabletBreakpoint){
+            position: relative;
+            padding: 20px 30px;
+            background-color: $grey;
+
+        }
+    }
+}
+.tile{
+    position: relative;
+    top: 0;
+  
+    transition: all 0.3s ease;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    @media(min-width: $tabletBreakpoint){
+        &:hover{
+            top: -6px;
+            .image{
+                box-shadow: 0px 8px 16px 0px rgba(33, 33, 33, 0.10);
+            }
+        }
+    }
+    .caption{
+        text-align: center;
+        margin: 4px;
+    }
+    .image{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+
+        box-shadow: 0px 8px 16px 0px rgba(33, 33, 33, 0);
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        
+    }
+	
+}
+.block{
+    padding: 20px 0px;
+    .content{
+        @extend .content-width;
+        .grid{
+            max-width: 100%;;
+            padding: 0px 40px;
+            display: grid;
+            box-sizing: border-box;
+            width: 100%;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-auto-rows: 300px;
+            column-gap: 50px;
+            row-gap: 30px;
+            @media(max-width: $tabletBreakpoint){
+                padding: 0px 20px;
+                grid-template-columns: 1fr 1fr;
+            }
+            @media(max-width: $mobileBreakpoint){
+                padding: 0;
+                grid-template-columns: 1fr;
+            }
+        }
+        
+       .wysiwyg{
+            margin-bottom: 20px;
+        }
+        .wysiwygBottom{
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+    }
+}

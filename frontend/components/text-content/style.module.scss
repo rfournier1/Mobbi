@@ -4,14 +4,17 @@
     @extend .content-width;
     position: relative;
     padding-top: 56.25% ;
-    
+    width:  calc(100vw - 64px);
+    max-width:  $contentWidth;
     height: 0;
     overflow: hidden;
-   
+    margin: 0;
     .player {
         position: absolute;
         top: 0;
         left: 0;
+        right:0;
+        bottom: 0;
     }
 }
 
@@ -109,6 +112,7 @@
                 filter: invert(100%);
                 position: absolute;
                 z-index: 3;
+                pointer-events: none;
             }
         }
        
@@ -127,6 +131,18 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             column-gap: 50px;
+            @media(max-width: $tabletBreakpoint){
+                display: flex;
+                flex-direction: column;
+                .left{
+                    margin-bottom: 40px;
+                }
+            }
+            @media(max-width: $mobileBreakpoint){
+                .left{
+                    margin-bottom: 20px;
+                }
+            }
             .left{
                 grid-area: 1 / 1 / 2 / 2;
                 text-align: left;

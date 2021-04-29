@@ -6,11 +6,11 @@ import Footer from '../components/footer'
 import Slider from '../components/Slider'
 import Header from '../components/header'
 import TextContent from "../components/text-content"
+import Catalog from "../components/catalog";
 import style from "./style.module.scss"
 import { checkLoggedIn } from "../plugins/djangoBackend/settings";
 import { useCMS } from 'tinacms';
-import { usePlugin, useForm } from 'tinacms'
-import { InlineForm } from 'react-tinacms-inline'
+
 
 const Index = ({ initialValue }) => {
 
@@ -27,6 +27,7 @@ const Index = ({ initialValue }) => {
         <Header initialValue={{header: initialValue.header}}  />
           <Slider id="slider" priority="99" label="Slider" initialValue={{slider: initialValue.slider}}  />
           <TextContent id="concept" priority="98" title="Concept" initialValue={{concept: initialValue.concept}}  />
+          <Catalog id="catalog" priority="97" title="Catalogue" initialValue={{catalog: initialValue.catalog}}  />
           <BlogList allBlogs={initialValue.posts} />
         <Footer initialValue={{footer: initialValue.footer}}  />
       </section>
@@ -36,7 +37,7 @@ const Index = ({ initialValue }) => {
 
 
 export async function getServerSideProps() {
-  const settings = useSettings(["siteConfig", "posts", "footer", "header", "slider", "concept"])
+  const settings = useSettings(["siteConfig", "posts", "footer", "header", "slider", "concept", "catalog"])
   let initialValue  = await settings.get();
   return {
     props: { initialValue },

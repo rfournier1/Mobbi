@@ -4,7 +4,6 @@ import useSettings from "../../plugins/djangoBackend/settings"
 import { usePlugin, useForm } from 'tinacms'
 import ReactPlayer from 'react-player'
 import {Dialog} from "@material-ui/core"
-import { array } from "prop-types"
 const Tile = ({mode, media})=>{
   const [open, setOpen]=useState(false);
   const ref = useRef();
@@ -16,7 +15,7 @@ const Tile = ({mode, media})=>{
   return <>
   {mode && <Dialog maxWidth={false} open={open} onClose={()=>setOpen(false)}> 
     <div className={style.playerWrapper}>
-      <ReactPlayer url={media.url} className={style.player} ref={ref} width="100%" height="100%" onReady={autoPlay}  />
+      <ReactPlayer url={media.url} className={style.player} ref={ref} width="100%" height="100%" style={{minWidth: '100%', minHeight: '100%'}} onReady={autoPlay}  />
     </div>
     </Dialog>
 
@@ -118,10 +117,11 @@ const TextContent = (props) => {
               id: Math.random()
                 .toString(36)
                 .substr(2, 9),
+              caption: "New image"
             }),
             itemProps: (item) => ({
               key: item.id,
-              label: "Image"
+              label:  item.caption
             }),
             fields:[
               {
@@ -138,7 +138,12 @@ const TextContent = (props) => {
             ]
           },
         ]
-      }
+      },
+      {
+        name: props.id+".text",
+        label: "Texte bas",
+        component: "html",
+      },
      
     ],
     onSubmit: (content) =>{
@@ -190,6 +195,9 @@ const TextContent = (props) => {
                     ))        
                   }
               </div>
+            </div>
+            <div className={style.wysiwyg}>
+              {(data && data[props.id]  && data[props.id].text) && <div dangerouslySetInnerHTML={{__html : data[props.id].text}} /> }
             </div>
           </div>
         </div>
