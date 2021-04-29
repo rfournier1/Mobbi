@@ -1,0 +1,10 @@
+@import "../../common";
+
+.block{
+    margin: 20px 0px;
+    .spacer{
+        @extend .content-width;
+        height: 0;
+        border-bottom: dashed 2px $lightGreen
+    }
+}

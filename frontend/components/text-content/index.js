@@ -126,6 +126,7 @@ const TextContent = (props) => {
             fields:[
               {
                 name: "image",
+                label: 'image',
                 component: 'image',
                 clearable: true,
                 parse: (media => media.previewSrc)
@@ -177,6 +178,7 @@ const TextContent = (props) => {
       <div className={style.content}>
         <div className={style.block}>
           <div className={style.content}>
+            <h3 className={style.title}>{props.title}</h3>
             <div className={(data && data[props.id] && data[props.id].switch)? style.switchGrid : style.grid}>
               <div className={style.left}>
                 {(data && data[props.id]  && data[props.id].leftText) && <div dangerouslySetInnerHTML={{__html : data[props.id].leftText}} /> }

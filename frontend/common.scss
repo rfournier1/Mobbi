@@ -70,6 +70,11 @@ $titleFont :'Spartan', sans-serif;
     font-family: $font ;
     color: $grey;
   }
+  .title{
+    text-align: center;
+    color: $green;
+    margin-bottom: 50px;
+  }
   a{
     @media(max-width: $tabletBreakpoint){
       &:hover{
@@ -147,4 +152,5 @@ $titleFont :'Spartan', sans-serif;
 :export{
   tabletBreakpoint:$tabletBreakpoint;
   mobileBreakpoint:$mobileBreakpoint;
+  green: $green;
 }

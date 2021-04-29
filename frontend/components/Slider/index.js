@@ -4,8 +4,8 @@ import useSettings from "../../plugins/djangoBackend/settings"
 import { usePlugin, useForm } from 'tinacms'
 import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
-import Right from "./right-chevron.svg";
-import Left from "./left-chevron.svg";
+import Right from "../shared/right-chevron.svg";
+import Left from "../shared/left-chevron.svg";
 
 const Arrow = ({color, next, ...props})=>{
   const { className, style, onClick } = props;

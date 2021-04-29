@@ -60,6 +60,7 @@ const Catalog = (props) => {
             fields:[
               {
                 name: "image",
+                label: 'image',
                 component: 'image',
                 clearable: true,
                 parse: (media => media.previewSrc)

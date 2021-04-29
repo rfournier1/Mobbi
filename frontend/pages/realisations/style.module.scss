@@ -1,0 +1,120 @@
+@import "../../common";
+
+.content{
+    padding-top: 30px;
+    @extend .content-width;
+    .headRow{
+        display: flex;
+        align-items: center;
+        h1{
+            width: 100%;
+        }
+        .return{
+            -webkit-clip-path: polygon(0% 50%, 25% 100%, 75% 100%, 100% 50%, 75% 0%, 25% 0%);
+            clip-path: polygon(0% 50%, 25% 100%, 75% 100%, 100% 50%, 75% 0%, 25% 0%);
+            width: 82px;
+            height: 70px;
+            display: flex;
+            padding: 25px;
+            box-sizing: border-box;
+            justify-content: center;
+            align-items: center;
+            margin-left: 80px;
+            background-color: $grey;
+            opacity: 1;
+            transition: all 0.4s ease;
+            @media(min-width: $tabletBreakpoint){
+                &:hover{
+                    opacity: 0.8;
+                }
+            }
+            svg{
+                *{
+                    fill: white;
+                }
+            }
+        }
+    }
+    .slider{
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+        height: 100%;
+        position: relative;
+        margin: 40px 0;
+        :global(.slick-prev){
+            position: absolute;
+            left: 20px;
+            height: 40px;
+            width: 40px;
+            z-index: 999;
+            top: calc( 50% - 10px) ;
+        }
+        :global(.slick-next){
+            position: absolute;
+            right: 20px;
+            height: 40px;
+            width: 40px;
+            z-index: 999;
+            top: calc( 50% - 10px) ;
+        }
+        :global(.slick-list){
+            height: 100%;
+            :global(.slick-track){
+                height: 100%;
+                :global(.slick-slide){
+                    >div{
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                    }
+                }
+            }
+        }
+        .calque{
+            height: 100%;
+            object-fit: contain;
+        }
+        ul{
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            grid-column: 1 / 4;
+            padding: 0;
+            margin: 0px -7px;
+            li{
+                display: flex;
+                margin: 0px 7px;
+                border-color: inherit-border-color;
+                height: 8px;
+                width: 8px;
+                border-radius: 5px;
+                border: solid 1px $green;
+                background-color: transparent;
+                transition: all 0.4s ease;
+                &:global(.slick-active){
+                    background-color: $green;
+                }
+                button{
+                    height: 8px;
+                    width: 8px;
+                    padding: 0;
+                    background-color: transparent;
+                    color: transparent;
+                    cursor: pointer;
+                    border: none;
+
+                }
+                &::before{
+                    display: none;
+                }
+            }
+        } 
+
+    }
+}
+
