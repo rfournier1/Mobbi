@@ -18,6 +18,28 @@ export default function Layout(props) {
         label: 'Site Description',
         component: 'text',
       },
+      {
+        label: 'Socials',
+        name: 'siteConfig.socials',
+        component: 'group',
+        fields: [
+          {
+            name: 'facebook',
+            label: 'Facebook URL',
+            component: 'text',
+          },
+          {
+            name: 'linkedin',
+            label: 'LinkedIn URL',
+            component: 'text',
+          },
+          {
+            name: 'instagram',
+            label: 'Instagram URL',
+            component: 'text',
+          },
+        ]
+      },
     ],
     onSubmit: (content) =>{
       const settings = useSettings("siteConfig")
@@ -30,6 +52,7 @@ export default function Layout(props) {
   const siteTitle= data && data.siteConfig && data.siteConfig.title ? data.siteConfig.title : ""
   const siteDescription=data && data.siteConfig && data.siteConfig.description ?data.siteConfig.description : "" 
   return (
+    <>
     <section
     className={`layout ${
       props.pathname == "info" &&
@@ -43,5 +66,11 @@ export default function Layout(props) {
     <div className="content">{props.children}</div>
    
   </section>
+  <style type="text/css">
+    {//remove user-agent margin
+    "body { margin: 0 }"
+    }
+    </style>
+  </>
   );
 }

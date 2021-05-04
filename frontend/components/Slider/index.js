@@ -10,7 +10,7 @@ import Left from "../shared/left-chevron.svg";
 const Arrow = ({color, next, ...props})=>{
   const { className, style, onClick } = props;
 
-  return <div style={{...style, cursor: "pointer"}} className={className} onClick={onClick}>
+  return <div style={{cursor: "pointer"}} className={className} onClick={onClick}>
       {next? 
       <Right style={{fill: color}} />
       :<Left style={{fill: color}} />
@@ -28,7 +28,6 @@ const Slider = (props) => {
         label: 'Images',
         name: 'slider.images',
         component: 'group-list',
-        description: "dim back -120px L et -20px h",
         defaultItem: () => ({
           id: Math.random()
             .toString(36)

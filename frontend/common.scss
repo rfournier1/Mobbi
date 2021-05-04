@@ -25,6 +25,20 @@ $brown : #a49184;
 $font :  "Montserrat", "Roboto", "Helvetica", sans-serif;;
 $titleFont :'Spartan', sans-serif;
 
+// Functions 
+@function getUnit($value) {
+  @return str-slice($value * 0 + "", 2, -1);
+}
+
+// Gérer les "padding: 10px 20px 30px 5px;"
+@function toRem($value) {
+    @if getUnit($value) == pt {
+        @return $value;
+    }
+    @return ($value / 20) + rem;
+}
+
+
 
 .content-width{
   width: $contentWidth;
@@ -93,22 +107,22 @@ $titleFont :'Spartan', sans-serif;
     font-weight: normal;
   }
   h1{
-    font-size: 96px;
+    font-size: toRem(96);
   }
   h2{
-    font-size: 60px;
+    font-size: toRem(60);
   }
   h3{
-    font-size: 48px;
+    font-size: toRem(48);
   }
   h4 {
-    font-size: 34px;
+    font-size: toRem(34);
   }
   h5 {
-    font-size: 24px;
+    font-size: toRem(24);
   }
   h6{
-    font-size: 20px;
+    font-size: toRem(20);
   }
 
 

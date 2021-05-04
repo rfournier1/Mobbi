@@ -50,7 +50,7 @@ const Header = (props) => {
   ];
   const [drawer,setDrawer] = useState(false);
 
-  const isWide = useMedia({minWidth: style.mobileBreakpoint});
+  const isWide = useMedia({minWidth: style.tabletBreakpoint});
   const toggleDrawer = useCallback(() => {
     setDrawer(old=>!old)
   },[setDrawer]);

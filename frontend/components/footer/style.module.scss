@@ -1,10 +1,15 @@
 @import "../../common";
 
 .block{
-    background-color: white;
+    background-color: $grey;
     padding: 20px 0px;
     min-height: 120px;
     box-sizing: border-box;
+    color: white;
+    *{
+        color: white;
+
+    }
     .content{
         @extend .content-width;
         .links{
@@ -15,10 +20,10 @@
                 padding:10px;
                 font-weight: lighter;
                 text-decoration: none;
-                color:black
+                color:white
             }
             .activeFooterLink{
-                text-decoration-color: black;
+                text-decoration-color: white;
                 text-decoration: underline;
             }
         }

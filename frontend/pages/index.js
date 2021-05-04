@@ -8,6 +8,7 @@ import Header from '../components/header'
 import TextContent from "../components/text-content"
 import Catalog from "../components/catalog";
 import Realisations from "../components/realisations"
+import Partners from "../components/partners"
 import style from "./style.module.scss"
 import { checkLoggedIn } from "../plugins/djangoBackend/settings";
 import { useCMS } from 'tinacms';
@@ -31,6 +32,8 @@ const Index = ({ initialValue }) => {
           <Catalog id="catalog" priority="97" title="Catalogue" initialValue={{catalog: initialValue.catalog}}  />
           <Spacer />
           <Realisations id="realisations" priority="96" title="Nos réalisations" initialValue={{realisations: initialValue.realisations}}  />
+          <Partners id="partners" priority="95" title="Ils nous font confiance" initialValue={{partners: initialValue.partners}}  />
+
         <Footer initialValue={{footer: initialValue.footer}}  />
       </section>
     </Layout>
@@ -39,7 +42,7 @@ const Index = ({ initialValue }) => {
 
 
 export async function getServerSideProps() {
-  const settings = useSettings(["siteConfig", "posts", "footer", "header", "slider", "concept", "catalog", "realisations"])
+  const settings = useSettings(["siteConfig", "footer", "header", "slider", "concept", "catalog", "realisations", "partners"])
   let initialValue  = await settings.get();
   return {
     props: { initialValue },

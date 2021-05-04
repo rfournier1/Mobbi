@@ -3,8 +3,12 @@
 .block {
     height:100px;
     position: relative;
-    width: 100%;;
+    width: 100%;
     z-index:1400;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     .navbar{
         background-color: white;
         height: 100px;
@@ -13,10 +17,7 @@
         z-index:999;
         width: 100%;
     }
-    .logo{
-        max-height:70px;
-        margin: 0px;
-    }
+   
    
     .content{
         @extend .page-width;
@@ -24,8 +25,16 @@
         align-items: center;
         justify-content: space-between;
         height: 100%;
+        max-width: 100%;
+        >a{
+                .logo{
+                max-height: 70px;
+                @media(max-width:$mobileBreakpoint) {
+                    max-height: 50px;
+                }
+            }
+        }
         .mobileButton{
-            width:100%;
             display: flex;
             justify-content: flex-end;
         }
