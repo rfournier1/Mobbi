@@ -19,6 +19,11 @@ export default function Layout(props) {
         component: 'text',
       },
       {
+        name: 'siteConfig.contactMail',
+        label: 'E-mail de contact',
+        component: 'text',
+      },
+      {
         label: 'Socials',
         name: 'siteConfig.socials',
         component: 'group',

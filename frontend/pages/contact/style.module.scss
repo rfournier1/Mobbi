@@ -1,0 +1,14 @@
+@import "../common";
+
+
+.grid{
+    @extend .content-width;
+    padding-top: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 50px;
+    row-gap: 30px;
+    @media(max-width: $tabletBreakpoint){
+        grid-template-columns: 1fr;
+    }
+}

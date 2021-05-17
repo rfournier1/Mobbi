@@ -88,7 +88,7 @@ const Realisations = (props) => {
   return (
   <div className={style.block} >
       <div className={style.anchor} id="realisations" />
-      <h3 className={style.title}>{props.title}</h3>
+      <h1 className={style.title}>{props.title}</h1>
       <div className={style.content}>
             <div className={style.grid}>
               {data && data[props.id] && data[props.id].realisations && data[props.id].realisations &&  data[props.id].realisations.map((e, i)=>(

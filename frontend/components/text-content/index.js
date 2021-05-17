@@ -167,8 +167,8 @@ const TextContent = (props) => {
     let chunked = [];
     let index = 0;
     while(index<array.length){
-      chunked.push(array.slice(index, 5 + index));
-      index = index +5;
+      chunked.push(array.slice(index, 6 + index));
+      index = index +6;
     }
     setDisplayedMedias(chunked);
     
@@ -178,7 +178,7 @@ const TextContent = (props) => {
       <div className={style.content}>
         <div className={style.block}>
           <div className={style.content}>
-            <h3 className={style.title}>{props.title}</h3>
+            <h1 className={style.title}>{props.title}</h1>
             <div className={(data && data[props.id] && data[props.id].switch)? style.switchGrid : style.grid}>
               <div className={style.left}>
                 {(data && data[props.id]  && data[props.id].leftText) && <div dangerouslySetInnerHTML={{__html : data[props.id].leftText}} /> }

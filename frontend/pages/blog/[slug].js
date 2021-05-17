@@ -1,94 +1,116 @@
 import  React, {useEffect} from 'react'
 import ReactMarkdown from 'react-markdown'
-import { usePlugin, useForm } from 'tinacms'
+import "slick-carousel/slick/slick.css";import { usePlugin, useForm } from 'tinacms'
 import Layout from '../../components/Layout'
 import useSettings, {checkLoggedIn} from "../../plugins/djangoBackend/settings"
 import { useCMS } from 'tinacms';
 import style from "./style.module.scss"
-const BlogTemplate= ({ initialValue, slug }) => {
+import Right from "../../components/shared/right-chevron.svg";
+import Left from "../../components/shared/left-chevron.svg";
+import Header from '../../components/header'
+import Footer from '../../components/footer'
+
+const Arrow = ({color, next, ...props})=>{
+  const { className, style, onClick } = props;
+
+  return <div style={{...style, cursor: "pointer"}} className={className} onClick={onClick}>
+      {next? 
+      <Right style={{fill: color}} />
+      :<Left style={{fill: color}} />
+      }
+  </div>
+}
+const BlogTemplate= ({ initialValue, index }) => {
 
   const cms=useCMS();
   useEffect(()=>checkLoggedIn(cms),[cms]);
   const formOptions = {
-    label: 'Blog Page',
+    label: 'Post',
     initialValues: initialValue,
-    fields: [
+     fields: [
       {
         label: 'Hero Image',
-        name: "posts."+slug+'.hero_image',
+        name: "blogPosts.posts."+index+'.hero_image',
         component: 'image',
         // Generate the frontmatter value based on the filename
         parse: media => media.previewSrc,
       },
+      { 
+        label: "Slug",
+        name: "blogPosts.posts."+index+".slug",
+        component: 'text',
+        placeholder: 'attention doit être unique'
+      },
       {
-        name: "posts."+slug+'.title',
+        name: "blogPosts.posts."+index+'.title',
         label: 'Title',
         component: 'text',
       },
       {
-        name: "posts."+slug+'.date',
+        name: "blogPosts.posts."+index+'.date',
         label: 'Date',
         component: 'date',
       },
       {
-        name: "posts."+slug+'.author',
+        name: "blogPosts.posts."+index+'.author',
         label: 'Author',
         component: 'text',
       },
       {
-        name: "posts."+slug+'.body',
+        name: "blogPosts.posts."+index+'.body',
         label: 'Blog Body',
         component: 'markdown',
       },
     ],
     onSubmit: (content) =>{
-      const settings = useSettings("posts")
-      settings.save(content.posts)
+      const settings = useSettings("blogPosts");
+      settings.save(content.blogPosts);
+      setTimeout(()=>{
+        window.location.replace("/posts/"+content.blogPosts.posts[index].slug);
+      }, 1000)
     }
   }
 
   const [post, form] = useForm(formOptions)
   usePlugin(form)
-   
-  function reformatDate(fullDate) {
-    const date = new Date(fullDate)
-    return date.toDateString().slice(4)
-  }
 
   return (
     <Layout  initialValue={{siteConfig: initialValue.siteConfig}}>
-      <article className={style.page}>
+      <Header initialValue={{header: initialValue.header}}  />
+
+      <article className={style.block}>
+      {post && post.blogPosts && post.blogPosts.posts && post.blogPosts.posts[index] &&
+      <>
         <figure className="blog__hero">
           <img
-            src={post && post.posts && post.posts[slug] && post.posts[slug].hero_image}
-            alt={`blog_hero_${post && post.posts && post.posts[slug] && post.posts[slug].title}`}
+            src={ post.blogPosts.posts[index].hero_image}
+            alt={`blog_hero_${post.blogPosts.posts[index].title}`}
           />
         </figure>
         <div className="blog__info">
-          <h1>{post && post.posts && post.posts[slug] && post.posts[slug].title}</h1>
-          <h3>{reformatDate(post && post.posts && post.posts[slug] && post.posts[slug].date)}</h3>
+          <h1>{post.blogPosts.posts[index].title}</h1>
+          <h3>{reformatDate(post.blogPosts.posts[index].date)}</h3>
         </div>
         <div className="blog__body">
-          <ReactMarkdown source={post && post.posts && post.posts[slug]&& post.posts[slug].body} />
+          <ReactMarkdown source={post.blogPosts.posts[index].body} />
         </div>
-        <h2 className="blog__footer">Written By: {post && post.posts && post.posts[slug]&& post.posts[slug].author}</h2>
-  </article>
-     
-    </Layout>
+        <h2 className="blog__footer">Par: {post.blogPosts.posts[index].author}</h2>
+        </>
+      }
+    </article>
+    <Footer initialValue={{footer: initialValue.footer}}  />
+  </Layout>
   )
 }
 
 export async function getServerSideProps({params}) {
   const slug = params.slug;
-  const settings = useSettings("posts")
-  const siteConfigSettings = useSettings("siteConfig")
-  let postData  = await settings.getByKey(slug);
-  let siteConfig = await siteConfigSettings.get();
-  let initialValue = {siteConfig : siteConfig}
-  initialValue["posts"]={};
-  initialValue["posts"][slug]=postData;
+  const settings = useSettings(["posts", "siteConfig", "header", "footer"])
+  let postData  = await settings.get();
+  let initialValue=postData;
+  let index = postData.blogPosts.posts.findIndex(e=>e.slug === slug);
   return {
-    props: { initialValue, slug },
+    props: { initialValue, index },
   }
 }
 

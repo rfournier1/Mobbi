@@ -228,6 +228,23 @@
                         margin-left: -26%;
                     }
                 }
+                .hexGrid6{
+                    @extend .hexGrid1;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    row-gap: 10px;
+                    >div:nth-child(6n+1),  >div:nth-child(6n+4){
+                        margin-right: -26%;
+                    }
+                    >div:nth-child(6n+2), >div:nth-child(6n+5){
+                        margin: 0 -13%;
+                        margin-bottom:  -70%;
+                        padding-top: 70%;
+
+                    }
+                    >div:nth-child(6n+3),  >div:nth-child(6n+6){
+                        margin-left: -26%;
+                    }
+                }
             }
         }
         .switchGrid{

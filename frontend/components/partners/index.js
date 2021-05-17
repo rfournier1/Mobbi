@@ -3,19 +3,6 @@ import style from "./style.module.scss"
 import useSettings from "../../plugins/djangoBackend/settings"
 import { usePlugin, useForm } from 'tinacms'
 
-const Tile = ({media, index})=>{
-
-
-  return <>
-  <div className={style.tile} key={index}>
-    <div className={style.tileBackground}>
-      <div className={style.image} >
-          <img src={media.image} />
-      </div>
-    </div>
-  </div>
-  </>
-}
 const Partners = (props) => {
   const formOptions = {
     id: props.priority+props.id,
@@ -58,11 +45,17 @@ const Partners = (props) => {
   return (
   <div className={style.block}>
       <div className={style.content}>   
-        <h3 className={style.title}>{props.title}</h3>
+        <h1 className={style.title}>{props.title}</h1>
         <div className={style.grid}>
         {(data && data[props.id]) &&  data[props.id].images && 
           data[props.id].images.map((e, i)=>(
-              <Tile media={e} index={i}/>
+            <div className={style.tile} key={i}>
+              <div className={style.tileBackground}>
+                <div className={style.image} >
+                    <img src={e.image} />
+                </div>
+              </div>
+            </div>
           ))        
         }
         </div> 

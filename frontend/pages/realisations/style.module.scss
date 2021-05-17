@@ -5,9 +5,11 @@
     @extend .content-width;
     .headRow{
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         h1{
             width: 100%;
+            text-align: left;
+            word-break: break-word;
         }
         .return{
             -webkit-clip-path: polygon(0% 50%, 25% 100%, 75% 100%, 100% 50%, 75% 0%, 25% 0%);
@@ -27,6 +29,9 @@
                 &:hover{
                     opacity: 0.8;
                 }
+            }
+            @media(max-width: $tabletBreakpoint){
+                margin-left: 10px;
             }
             svg{
                 *{

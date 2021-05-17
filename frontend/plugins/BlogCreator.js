@@ -33,11 +33,16 @@ export class BlogCreatorPlugin {
   }
 
   async onSubmit(form) {
-    const settings = useSettings("posts")
+    const settings = useSettings("blogPosts");
+    let setting = settings.get();
     const slug = await this.slug(form)
     const value = await this.value(form)
-    let setting = {};
-    setting[slug] = value;
+    let content = {...value, slug: slug};
+    if(setting.blogPosts){
+      setting.blogPosts.push(content);
+    }else{
+      setting.blogPosts = [content];
+    }
     settings.save(setting)
   }
 }

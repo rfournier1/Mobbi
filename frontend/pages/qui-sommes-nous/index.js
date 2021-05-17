@@ -3,7 +3,7 @@ import useSettings from "../../plugins/djangoBackend/settings"
 import Layout from '../../components/Layout'
 import Footer from '../../components/footer'
 import Header from '../../components/header'
-import BlogList from "../../components/blogs"
+import TextContent from "../../components/text-content"
 import style from "./style.module.scss"
 import { checkLoggedIn } from "../../plugins/djangoBackend/settings";
 import { useCMS } from 'tinacms';
@@ -17,12 +17,12 @@ const Index = ({ initialValue }) => {
 
   return (
     <Layout
-      pathname="/blog"
+      pathname="/qui-sommes-nous"
       initialValue={{siteConfig: initialValue.siteConfig}}
     >
       <section className={style.page}>
         <Header initialValue={{header: initialValue.header}}  />
-        <BlogList data = {initialValue.blogPosts} id={"blogPosts"}  />
+          <TextContent id="nous" priority="98" title="Qui sommes nous" initialValue={{nous: initialValue.nous}}  />
         <Footer initialValue={{footer: initialValue.footer}}  />
       </section>
     </Layout>
@@ -31,9 +31,8 @@ const Index = ({ initialValue }) => {
 
 
 export async function getServerSideProps() {
-  const settings = useSettings(["header","footer","blogPosts"])
+  const settings = useSettings(["siteConfig", "footer", "header", "nous"])
   let initialValue  = await settings.get();
-  console.log(initialValue)
   return {
     props: { initialValue },
   }

@@ -1,0 +1,22 @@
+@import "../../common";
+
+.block{
+    width: 100%;
+    .map{
+        height: 500px;
+        position: relative;
+        filter: url('#filter') ;
+
+        .filter{
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            pointer-events: none;
+            background-color: rgba($green, 0.2);
+
+        }
+    }
+}

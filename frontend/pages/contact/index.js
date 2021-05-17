@@ -3,7 +3,8 @@ import useSettings from "../../plugins/djangoBackend/settings"
 import Layout from '../../components/Layout'
 import Footer from '../../components/footer'
 import Header from '../../components/header'
-import BlogList from "../../components/blogs"
+import Contact from "../../components/contact"
+import Map from "../../components/map"
 import style from "./style.module.scss"
 import { checkLoggedIn } from "../../plugins/djangoBackend/settings";
 import { useCMS } from 'tinacms';
@@ -17,12 +18,15 @@ const Index = ({ initialValue }) => {
 
   return (
     <Layout
-      pathname="/blog"
+      pathname="/contact"
       initialValue={{siteConfig: initialValue.siteConfig}}
     >
-      <section className={style.page}>
+      <section className={style.page}>  
         <Header initialValue={{header: initialValue.header}}  />
-        <BlogList data = {initialValue.blogPosts} id={"blogPosts"}  />
+        <div className={style.grid}>
+          <Contact initialValue={{siteConfig: initialValue.siteConfig}}  />
+          <Map id="map" priority="98" title="Carte" initialValue={{map: initialValue.map}}  />
+        </div>
         <Footer initialValue={{footer: initialValue.footer}}  />
       </section>
     </Layout>
@@ -31,9 +35,8 @@ const Index = ({ initialValue }) => {
 
 
 export async function getServerSideProps() {
-  const settings = useSettings(["header","footer","blogPosts"])
+  const settings = useSettings(["siteConfig", "footer", "header", "map"])
   let initialValue  = await settings.get();
-  console.log(initialValue)
   return {
     props: { initialValue },
   }
