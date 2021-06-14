@@ -1,6 +1,6 @@
 # Mobbi Website
 
-This is a full website to showcase the project Mobbi and its products, based on React.
+This is a full website to showcase the project Mobbi and its products, based on NextJS and Django Rest Framework.
 
 Mobbi is an entrepreneur student project from La FEE (Filière Étudiant Entreprendre), INSA Lyon, Lyon, France. 
 
