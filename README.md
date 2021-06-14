@@ -43,6 +43,9 @@ yarn dev
 
 ### Deploy to production :
 
+
+I suggest to use docker and docker-compose to manage frontend and backend. 
+
 #### backend : 
 
 Before going to production, please follow Django guide to production :
@@ -58,11 +61,9 @@ yarn build
 
 ### Run in procution :
 
-I suggest to use docker and a dockerfile to manage frontend and backend. 
-
 Run backend depends on the method you chosed in the django deployment guide
 
-Run frontend inside a NodeJS environment
+Running frontend inside a NodeJS environment
 ```
 cd frontend
 yarn start
