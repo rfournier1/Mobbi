@@ -232,6 +232,7 @@
                     @extend .hexGrid1;
                     grid-template-columns: 1fr 1fr 1fr;
                     row-gap: 10px;
+                    margin-bottom: 120px;
                     >div:nth-child(6n+1),  >div:nth-child(6n+4){
                         margin-right: -26%;
                     }
